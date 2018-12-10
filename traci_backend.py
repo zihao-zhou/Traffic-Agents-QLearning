@@ -2,6 +2,7 @@ import sys, os
 from shutil import which
 import time
 
+# todo: not hard-code it
 tools_path = os.path.join('/usr/share/sumo', 'tools')
 sys.path.append(tools_path)
 import traci
@@ -12,7 +13,7 @@ if not is_valid_binary(sumo_bin):
     raise ImportError("{} is not an executable binary".format(sumoCommand))
 
 # todo
-config_file = "/home/yaoshihu/rl-project/code/project_code/code/mynet/config.sumocfg"
+config_file = "mynet/config.sumocfg"
 
 sumo_command = [sumo_bin, "-c", config_file]
 
