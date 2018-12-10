@@ -2,10 +2,13 @@ import sys, os
 from shutil import which
 import time
 
-# todo: not hard-code it
-tools_path = os.path.join('/usr/share/sumo', 'tools')
-sys.path.append(tools_path)
-import traci
+if "SUMO_HOME" in os.environ:
+    sumo_home = os.environ['SUMO_HOME']
+    tools_path = os.path.join(sumo_home, 'tools')
+    sys.path.append(tools_path)
+    import traci
+else:
+    raise ImportError("SUMO_HOME is not defined, try to export it first")
 
 from utils import *
 sumo_bin = 'sumo'
