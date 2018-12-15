@@ -46,3 +46,16 @@ class TraciBackend(object):
     def get_vehicle_ids(self):
         return traci.vehicle.getIDList()
 
+    def get_light_ids(self):
+        return traci.trafficlight.getIDList();
+
+    def get_light_definition(self, tlsID):
+        return traci.trafficlight.getCompleteRedYellowGreenDefinition(tlsID)
+
+    def get_cur_light_state(self, tlsID):
+        return traci.trafficlight.getPhase(tlsID)
+
+    # set the traffic light at <tlsID> to follow the <index> rule
+    # in the current definition, there will only be two rules. rule 1: red; rule 2: green
+    def set_light_phase(self, tlsID, index):
+        return traci.trafficlight.setPhase(tlsID, index)
