@@ -39,9 +39,15 @@ class TraciBackend(object):
 
     def get_vehicle_cnt(self, lane_id):
         return traci.lane.getLastStepVehicleNumber(lane_id)
+    
+    def get_vehicle_cnt_edge(self, edge_id):
+        return traci.edge.getLastStepVehicleNumber(edge_id)
 
     def get_halt_vehicle_cnt(self, lane_id):
         return traci.lane.getLastStepHaltingNumber(lane_id)
+    
+    def get_halt_vehicle_cnt_edge(self, edge_id):
+        return traci.edge.getLastStepHaltingNumber(edge_id)
 
     def get_vehicle_ids(self):
         return traci.vehicle.getIDList()
@@ -54,6 +60,9 @@ class TraciBackend(object):
 
     def get_cur_light_state(self, tlsID):
         return traci.trafficlight.getPhase(tlsID)
+    
+    def is_end(self):
+        return traci.simulation.getMinExpectedNumber() <= 0
 
     # set the traffic light at <tlsID> to follow the <index> rule
     # in the current definition, there will only be two rules. rule 1: red; rule 2: green
